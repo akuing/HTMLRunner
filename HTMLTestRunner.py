@@ -641,7 +641,8 @@ class HTMLTestRunner(Template_mixin):
             report = report,
             ending = ending,
         )
-        self.stream.write(output)
+        #in Python3 the write method of stdout need know the encoding
+        self.stream.write(output.encode("utf8"))
 
 
     def _generate_stylesheet(self):
