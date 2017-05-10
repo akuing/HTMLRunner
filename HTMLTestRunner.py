@@ -642,7 +642,10 @@ class HTMLTestRunner(Template_mixin):
             ending = ending,
         )
         #in Python3 the write method of stdout need know the encoding
-        self.stream.write(output.encode("utf8"))
+        try:
+            self.stream.write(output.encode("utf8"))
+        except TypeError:
+            self.stream.write(output)
 
 
     def _generate_stylesheet(self):
